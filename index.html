@@ -1,0 +1,2705 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./nav.css">
+    <title>首頁</title>
+    <style>
+        html{
+            scroll-padding-top: 90px; 
+
+            @media screen and (max-width: 992px){
+                scroll-padding-top: 60px; 
+            }
+        }
+        body{
+            position: relative;
+        }
+        :root {
+            --primary: #851931;
+            --wine: #BA435D;
+            --purple: #9A5B69;
+            --purple_light: #A66E7B;
+            --wine_light: #D4C0C0;
+            --light: #F4EBEB;
+            --text_primary: #60464C;
+            --text_dark: #3F3034;
+            --text_gray: #6A6A6A;
+            --orange: #FF4F4F;
+            --yellow: #FFF177;
+            --blue: #A5D1DF;
+            --blue_dark: #5B839A;
+            --green: #9CD8D5;
+            --green_dark: #619C91;
+        }
+
+        @keyframes rotate {
+            0%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(180deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bird {
+            0%{
+                opacity: 0;
+                left: -100%;
+                top: 10%;
+                transform: scale(0.6);
+            }
+            10%{
+                opacity: 1;
+                left: -30%;
+                top: 7%;
+            }
+            80%{
+                opacity: 1;
+                left: 100%;
+                top: -10%;
+                transform: scale(0.2);
+            }
+            90%{
+                opacity: 0;
+                left: 100%;
+            }
+            100%{
+                opacity: 0;
+                left: -100%;
+                top: 10%;
+            }
+
+
+        }
+
+        @keyframes all_probtn {
+            0%{
+                transform: scaleX(0);
+                transform-origin: left;
+            }
+            30%{
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+            80%{
+                transform: scaleX(1);
+                transform-origin: right;
+            }
+            100%{
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+
+        @keyframes all_probtn_head {
+            0%{
+                transform: rotate(-5deg) translateY(4px) ;
+                transform-origin: bottom;
+                opacity: 0;
+            }
+            20%{
+                transform: rotate(45deg) translateY(-1px) ;
+                transform-origin: bottom;
+                opacity: 1;
+            }
+            70%{
+                transform: rotate(45deg) translateY(-1px) ;
+                transform-origin: bottom;
+                opacity: 1;
+            }
+            100%{
+                transform: rotate(-5deg) translateY(4px) ;
+                transform-origin: bottom;
+                opacity: 0;
+            }
+        }
+
+        @keyframes hoverRotate{
+            0%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(180deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        
+        .homebar{
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            
+            .homebar_bg{
+                position: absolute;
+                height: 100%;
+                width: 140%;
+                transition: .8s ease-out;
+                filter: blur(3px);
+                z-index: 10;
+
+                left: -350px;
+                top: -10px;
+                transform: scale(1.05);
+
+                background: url(./img/CreationAll.jpg) no-repeat center/cover;
+                
+            }
+            .homebar_bg.active{
+                position: absolute;
+                height: 100%;
+                width: 140%;
+                transition: .8s ease-out;
+                filter: blur(3px);
+                z-index: 10;
+                left: -350px;
+                top: -10px;
+                transform: scale(1.05);
+                background: url(./img/CreationAll_dawn.jpg) no-repeat center/cover;
+            }
+
+            .homebar_lf{
+                position: absolute;
+                height: 105%;
+                width: 150%;
+                transition: .8s ease-out;
+                filter: blur(0px);
+                z-index: 30;
+
+                left: -300px;
+                top: 50px;
+                
+                background: url(./img/leave_fb.png) no-repeat bottom/cover;
+                
+            }
+
+            .homebar_lf.active{
+                position: absolute;
+                height: 105%;
+                width: 150%;
+                transition: .8s ease-out;
+                filter: blur(0px);
+                z-index: 30;
+                left: -300px;
+                top: 50px;
+                background: url(./img/leave_fb_dawn.png) no-repeat bottom/cover;
+                
+            }
+
+            .bird{
+                position: absolute;
+                z-index: 40;
+                width: 500px;
+                height: 265px;
+                left: -100%;
+                top: 10%;
+                background: url(./img/birds.gif) no-repeat center/contain;
+                animation: bird 14s linear infinite;
+                cursor: pointer;
+            }
+
+            
+        }
+
+        .homebar_wine{
+            position: absolute;
+            height: 600px;
+            width: 600px;
+            transition: opacity .3s ease-out, top .8s ease-out, transform .8s ease-out;
+            
+            filter: blur(0px);
+            z-index: 20;
+            opacity: 0;
+            transform-origin: center center;
+            transform: rotate(30deg);
+
+            right: 10%;
+            top: 100%;
+            
+            background: url(./img/DOMAINE\ JACQUES\ PRIEUE\ CLOS\ DE\ VOUGEOT\ GRAND\ CRU\ 2021.png) no-repeat center/cover;
+        }
+
+        .homebar_wine_text{
+            position: absolute;
+            z-index: 20;
+            left: 10%;
+            top: 100%;
+            opacity: 0;
+            transition: .5s ease-in;
+            
+            h2{
+                font-size: 25px;
+                margin-bottom: 15px;
+                font-weight: 600;
+                color: #353e49;
+            }
+            p{
+                width: 650px;
+                font-size: 15px;
+                line-height: 30px;
+                letter-spacing: 1px;
+                color: #161c21;
+            }
+        }
+
+        .homebar_wine_text.display{
+            top: 17%;
+            opacity: 1;
+        }
+       
+
+        .homebar_wine.display{
+            opacity: 1;
+            top: 18%;
+            transform: rotate(0deg);
+        }
+
+        @keyframes scaleY {
+            0%{
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+            20%{
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+            70%{
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+            100%{
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+        }
+
+        @keyframes headScaleY {
+            0%{
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+            20%{
+                transform: scaleY(1);
+                transform-origin: top;
+            }
+            50%{
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+            100%{
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+        }
+
+        .homebar_scroll{
+            position: absolute;
+            cursor: pointer;
+            z-index: 40;
+            right: 8%;
+            bottom: 20%;
+            opacity: 1;
+            width: 70px;
+            height: 180px;
+            background: url(./img/scroll_b.png) no-repeat right/contain;
+            transition: .5s ease-in;
+
+            .scroll_line{
+                width: 2px;
+                height: 100%;
+                background-color: white;
+                animation: scaleY 3s ease-in infinite;
+            }
+
+            .scroll_head_b{
+                position: absolute;
+                left: 7px;
+                bottom: 0px;
+                transform: rotate(25deg);
+            }
+            .scroll_head{
+                width: 2px;
+                height: 30px;
+                animation: headScaleY 3s ease-in infinite;
+                background-color: white;
+            }
+        }
+
+        @keyframes bird_rwd {
+            0%{
+                opacity: 0;
+                left: -100%;
+                top: 30%;
+                transform: scale(0.6);
+            }
+            10%{
+                opacity: 1;
+                left: -50%;
+                top: 25%;
+            }
+            80%{
+                opacity: 1;
+                left: 100%;
+                top: -15%;
+                transform: scale(0.2);
+            }
+            90%{
+                opacity: 0;
+                left: 100%;
+            }
+            100%{
+                opacity: 0;
+                left: -100%;
+                top: 10%;
+            }
+
+
+        }
+
+        .homebar_rwd{
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            color: #353e49;
+
+            
+            .homebar_bg_rwd{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                transition: .8s ease-out;
+                z-index: 10;
+                background: url(./img/CreationAll_rwd.jpg) no-repeat center/cover;
+                
+            }
+            .homebar_bg_rwd.active{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                transition: .8s ease-out;
+                z-index: 10;
+                background: url(./img/CreationAll_dawn_rwd.jpg) no-repeat center/cover;
+            }
+            
+            .bird_rwd{
+                position: absolute;
+                z-index: 40;
+                width: 415px;
+                height: 220px;
+                left: -100%;
+                top: 10%;
+                background: url(./img/birds.gif) no-repeat center/contain;
+                animation: bird_rwd 8s linear infinite;
+                cursor: pointer;
+            }
+
+            .homebar_rwd_link{
+                position: absolute;
+                width: 100%;
+                font-size: 18px;
+                letter-spacing: 5px;
+                z-index: 40;
+                bottom: 27%;
+                color: white;
+                p{
+                    width: 100%;
+                    text-align: center;
+                }
+                
+            }
+        }
+
+        .homeuserview_rwd{
+            position: absolute;
+          
+            top: 60px;
+            left: 0;
+            z-index: 41;
+            width: 100%;
+            height: 185px;
+
+            h2{
+                position: absolute;
+                left: 12%;
+                top: 10%;
+                z-index: 20;
+                font-size: 32px;
+                line-height: 50px;
+                letter-spacing: 5px;
+
+            }
+
+            .home_search_rwd{
+                position: absolute;
+                z-index: 41;
+                width: 100%;
+                bottom: 0%;
+                padding-inline: 10%;
+
+                .search_icon_rwd{
+                    position: absolute;
+                    font-size: 18px;
+                    right: 13%;
+                    bottom: 29%;
+                    @media screen and (min-width: 768px) and (max-width: 992px){
+                        right: 11%;
+                    }
+                    @media screen and (min-width: 576px) and (max-width: 768px){
+                        right: 12%;
+                    }
+                }
+                
+                input[type=search]{
+                    width: 100%;
+                    padding-left: 15px;
+                    padding-right: 12px;
+                    padding-block: 7px;
+                    letter-spacing: 1px;
+                    border: 2px solid #353e49;
+                    border-radius: 20px;
+                    background-color: #ffffffe0;
+                    color: #353e49;
+                }
+            }
+        }
+
+            
+
+        #homeArea01{
+            padding-top: 70px;
+            position: relative;
+            
+
+            .homeArea01_l{
+                width: 730px;
+                height: 450px;
+                background: url(./img/Wine-Heart-Health.jpg) no-repeat right/cover;
+
+                @media screen and (min-width: 1200px) and (max-width: 1400px){
+                    width: 650px;
+                    height: 450px;
+                }
+
+                @media screen and (min-width: 992px) and (max-width: 1200px){
+                    width: 550px;
+                    height: 450px;
+                }
+            }
+
+            .homeArea01_r{
+                background-color: rgb(138, 25, 49);
+                padding: 35px 45px;
+                width: 615px;
+                height: 320px;
+                position: absolute;
+                right: 0;
+                top: 170px;
+                transition: .5s;
+                cursor: pointer;
+            }
+            .homeArea01_r:hover{
+                background-color: rgb(167, 42, 69, 0.95);
+            }
+        }
+
+        .homeArea01_r_t{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .homeArea01_r_t_box{
+                width: 12px;
+                height: 24px;
+                background-color: white;
+                margin-right: 15px;
+                margin-left: 3px;
+            }
+            p {
+                font-size: 20px;
+                margin: 0;
+                letter-spacing: 4px;
+                color: white;
+            }
+        }
+
+        .homeArea01_r_m{
+            color: white;
+            letter-spacing: 1px;
+            font-size: 16px;
+            line-height: 30px;
+            text-align: justify;
+        }
+
+        @keyframes scaleX {
+            0%{
+                transform: scaleX(0.5);
+            }
+            30%{
+                transform: scaleX(0.7);
+            }
+            80%{
+                transform: scaleX(0.4);
+            }
+            100%{
+                transform: scaleX(0.5);
+            }
+        }
+
+        .homeArea01_r_b{
+            position: relative;
+            margin-top: 16px;
+            width: 100%;
+            display: flex;
+            color: white;
+            letter-spacing: 4px;
+            justify-content: flex-end;
+            
+            .line1{
+                position: absolute;
+                top: 16px;
+                right: 95px;
+                width: 80px;
+                height: 1px;
+                background-color: white;
+
+                transform-origin: right;
+                transform: scaleX(0.5);
+
+                animation: scaleX 3s ease-in infinite;
+            }
+            .line2{
+                width: 12px;
+                height: 1px;
+                position: absolute;
+                transform: rotate(45deg);
+                right: 94px;
+                top: 11px;
+                background-color: white;
+            }
+        }
+
+        .news{
+            .col-3 img{
+
+                margin-left: 80px;
+                width: 160px;
+                @media screen and (max-width: 1400px){
+                    width: 130px;
+                    margin-left: 80px;
+                }
+
+
+            }
+            .news_b{
+                height: 240px;
+                width: 100%;
+                display: flex;
+                padding-top: 30px;
+                padding-left: 30px;
+                background: url(./img/Rectangle\ 33.png) no-repeat top/contain;
+                @media screen and (min-width: 992px) and (max-width: 1200px){
+                    padding-top: 20px;
+                    padding-left: 20px;
+                }
+
+            }
+            .news_b_l{
+                width: 280px;
+                @media screen and (min-width: 1200px) and (max-width: 1400px){
+                    width: 250px;
+                }
+
+                @media screen and (min-width: 992px) and (max-width: 1200px){
+                    width: 280px;
+                }
+                
+                img{
+                    width: 100%;
+                }
+            }
+            .news_b_r{
+                
+                width: 550px;
+                padding-left: 30px;
+                p{
+                    margin: 0;
+                }
+                .fs5{
+                    font-weight: 900;
+                    letter-spacing: 2px;
+                    margin-bottom: 10px;
+                    font-size: 20px;
+                    @media screen and (min-width: 1200px) and (max-width: 1400px){
+                        font-size: 18px;
+                    }
+
+                    @media screen and (min-width: 992px) and (max-width: 1200px){
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                    }
+                }
+                .fs{
+                    font-size: 14px;
+                    letter-spacing: 1px;
+                    line-height: 22px;
+                    text-align: justify;
+                    @media screen and (min-width: 1200px) and (max-width: 1400px){
+                        font-size: 12px;
+                        line-height: 18px;
+                    }
+
+                    @media screen and (min-width: 992px) and (max-width: 1200px){
+                        font-size: 12px;
+                        line-height: 16px;
+                    }
+
+                }
+                .news_btn{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-top: 15px;
+                    cursor: pointer;
+
+                    @media screen and (min-width: 992px) and (max-width: 1200px){
+                        padding-top: 8px;
+                    }
+                    p{
+                        font-weight: 900;
+                        color: rgb(255, 97, 124);
+                        font-size: 14px;
+                        letter-spacing: 1px;
+                        
+                    }
+                    img{
+                        width: 15px;
+
+                        @media screen and (max-width: 1400px){
+                            width: 10px;
+                        }
+
+                        
+                    }
+                }
+            }
+        }
+        /* 0805 */
+        .homeArea02_bg{
+            width: 100%;
+            height: 150vh;
+            position: absolute;
+            z-index: -1;
+            top: 1780px;
+            background: url(./img/Frame\ 61.png) no-repeat center/contain;
+            @media screen and (min-width: 1200px) and (max-width: 1400px){
+                top: 1680px;
+            }
+            @media screen and (min-width: 992px) and (max-width: 1200px){
+                top: 1650px;
+            }
+        }
+
+        #homeArea02{
+            /* border: 3px solid lightcoral; */
+            margin-top: 10px;
+            
+
+            .homeArea02_title{
+                width: 180px;
+            }
+
+            
+
+            .homeArea02_type{
+
+                /* border: 3px solid lightgreen; */
+
+                margin-top: 40px;
+
+                a{
+                    display: block;
+                    width: 100%;
+                }
+
+                .col-4{
+                    position: relative;
+                }
+
+                .homeArea02_type_text{
+                    position: absolute;
+                    color: white;
+                    font-size: 18px;
+                    text-shadow: 1px 1px 2px var(--text_primary);
+                    letter-spacing: 5px;
+                    height: 100%;
+                    width: calc(100% - 24px);
+                    /* border: 2px solid lightcoral; */
+                    display: flex;
+                    align-items: center;
+                    left: 12px;
+                    background-clip: content-box;
+                    transition: .6s;
+                    border-radius: 15px;
+
+                    @media screen and (max-width: 1200px){
+                        font-size: 14px;
+                        letter-spacing: 3px;
+                    }
+                    
+                    &:hover{
+                        background-color: #8519302a;
+                    }
+
+                    p{
+                        opacity: 0;
+                        margin: 0;
+                        width: 100%;
+                        text-align: center;
+                        transition: .7s;
+                    }
+
+                    &:hover p{
+                        opacity: 1;
+                        margin: 0;
+                        width: 100%;
+                        text-align: center;
+
+                    }
+                    
+                }
+
+                img{
+                    width: 100%;
+                    border-radius: 15px;
+                }
+            }
+
+            .homeArea02_product{
+                height: 370px;
+                margin-top: 40pX;
+                /* border: 3px solid lightblue; */
+
+                display: flex;
+
+                .homeArea02_product_list{
+
+                    height: 100%;
+                    width: 70%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    /* border: 3px solid lightgray; */
+
+
+                    @media screen and (min-width: 992px) and (max-width: 1400px){
+                        height: 90%;
+                      
+                    }
+
+                   
+
+
+                    .product_item{
+                        width: 32%;
+                        height: 100%;
+                        background-color: white;
+
+                        
+                    }
+
+                    .product_item_pic{
+                        height: 80%;
+                        /* border: 3px solid lightcoral; */
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: center;
+                        border: 1px solid #cacaca;
+
+                        @media screen and (min-width: 992px) and (max-width: 1200px){
+                            height: 82%;
+                        }
+
+
+                        img{
+                            margin-top: 10px;
+                            height: 78%;
+                        }
+
+
+                        .product_item_price{
+                            display: flex;
+                            width: 100%;
+                            justify-content: space-between;
+                            color: var(--primary);
+                            letter-spacing: 1px;
+                            padding-inline: 18px;
+
+                            @media screen and (min-width: 992px) and (max-width: 1200px){
+                                font-size: 12px;
+                                padding-inline: 14px;
+                            }
+                        }
+                    }
+
+                    .product_item_name{
+                        height: 20%;
+                        background-color: var(--primary);
+                        color: white;
+                        padding: 18px;
+                        font-size: 14px;
+                        text-align: justify;
+                        display: flex;
+                        align-items: center;
+
+                        @media screen and (min-width: 992px) and (max-width: 1200px){
+                            padding: 14px;
+                            font-size: 12px;
+                            height: 18%;
+                        }
+                    }
+                }
+
+                .all_product{
+                    width: 30%;
+                    /* border: 2px solid red; */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    img{
+                        width: 100%;
+                    }
+
+                    a{
+                        height: 105px;
+                        margin-bottom: 35px;
+                    }
+
+                    .all_circlebtn{
+
+                        width: 105px;
+                        height: 105px;
+                        border: 2px solid white;
+                        border-radius: 50%;
+                        position: relative;
+                        margin-left: auto;
+                        margin-right: 20px;
+                        margin-bottom: 40px;
+
+                        
+
+                        .btn_arrow_line{
+                            position: absolute;
+                            left: 38px;
+                            top: 52px;
+                            height: 2px;
+                            width: 30px;
+                            background-color: white;
+                            animation: all_probtn 3s ease-out infinite;
+                          
+                        }
+
+                        .btn_arrow_head{
+                            position: absolute;
+                            transform: rotate(35deg);
+                            right: 34px;
+                            top: 48px;
+                            height: 2px;
+                            width: 12px;
+                            background-color: white;
+                            animation: all_probtn_head ease-out 3s infinite;
+                          
+                        }
+                    }
+
+                
+                }
+            }
+
+        }
+
+        .all_circlebtn_red{
+
+        width: 105px;
+        height: 105px;
+        border: 2px solid var(--wine);
+        border-radius: 50%;
+        position: relative;
+        margin-left: auto;
+        margin-right: 20px;
+        margin-bottom: 40px;
+
+
+
+        .btn_arrow_line_red{
+            position: absolute;
+            left: 38px;
+            top: 52px;
+            height: 2px;
+            width: 30px;
+            background-color: var(--wine);
+            animation: all_probtn 3s ease-out infinite;
+        
+        }
+
+        .btn_arrow_head_red{
+            position: absolute;
+            transform: rotate(35deg);
+            right: 34px;
+            top: 48px;
+            height: 2px;
+            width: 12px;
+            background-color: var(--wine);
+            animation: all_probtn_head ease-out 3s infinite;
+        
+        }
+        }
+
+        .all_circlebtn_blue{
+
+            width: 105px;
+            height: 105px;
+            border: 2px solid var(--blue_dark);
+            border-radius: 50%;
+            position: relative;
+            margin-left: auto;
+            margin-right: 20px;
+            margin-bottom: 40px;
+
+
+
+            .btn_arrow_line_blue{
+                position: absolute;
+                left: 38px;
+                top: 52px;
+                height: 2px;
+                width: 30px;
+                background-color: var(--blue_dark);
+                animation: all_probtn 3s ease-out infinite;
+
+            }
+
+            .btn_arrow_head_blue{
+                position: absolute;
+                transform: rotate(35deg);
+                right: 34px;
+                top: 48px;
+                height: 2px;
+                width: 12px;
+                background-color: var(--blue_dark);
+                animation: all_probtn_head ease-out 3s infinite;
+
+            }
+        }
+
+
+        #homeArea03{
+            margin-top: 30px;
+            .homeArea03_title{
+                width: 145px;
+            }
+
+            .homeArea03_outer{
+
+                /* border: 3px solid lightgreen; */
+
+                .homeArea03_article_lg{
+                    width: 100%;
+                    height: 350px;
+                    background: url(./img/Rectangle\ 39b.jpg) no-repeat center/cover;
+                    border-radius: 10px;
+                }
+
+                .homeArea03_article_sm{
+                    width: 100%;
+                    height: 250px;
+                    border-radius: 10px;
+                }
+
+                .sm1{
+                    background: url(./img/Rectangle\ 64.png) no-repeat center/cover;
+                }
+
+                .sm2{
+                    background: url(./img/Rectangle\ 65.png) no-repeat center/cover;
+                }
+
+                .article_circlebtn{
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                }
+
+                .col-12,.col-5{
+                    position: relative;
+                }
+                .homeArea03_article_title{
+                    position: absolute;
+                    color: white;
+                    font-size: 24px;
+                    letter-spacing: 2px;
+                    font-weight: 600;
+                    bottom: 40px;
+                    left: 60px;
+                    text-shadow: 1px 1px 3px var(--text_primary);
+
+                    @media screen and (min-width: 992px) and (max-width: 1200px){
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        #homeArea04{
+            margin-top: 40px;
+            position: relative;
+            margin-bottom: 80px;
+
+            .nextarr{
+                position: absolute;
+                color: var(--blue_dark);
+                font-size: 36px;
+                right: 0px;
+                top: 200px;
+                cursor: pointer;
+            }
+
+            .homeArea04_title{
+                width: 140px;
+                display: block;
+                
+            }
+
+            .tech{
+                width: 115px;
+                height: 200px;
+                display: inline-block;
+                vertical-align: top;
+                cursor: pointer;
+            }
+                
+
+            .teacher_outer{
+
+                width: calc(100% - 120px);
+                height: 225px;
+                /* border: 2px solid lightcoral; */
+                display: inline-block;
+                margin-left: -5px;
+                
+
+                .teacher_area.active .teacher_area_inner {
+                    transform: translateX(-49%); 
+                    @media screen and (min-width: 992px) and (max-width: 1200px){
+                        transform: translateX(-47%); 
+                    }
+                }
+
+                .teacher_area{
+                    /* border: 2px solid lightblue; */
+                    height: 225px;
+                    overflow: hidden;
+                    position: relative;
+
+
+                .teacher_area_inner{
+                    position: absolute;
+                    height: 100%;
+                    /* background-color: #9ad1ff; */
+                    width: 200%;
+                    padding-left: 20px;
+                    user-select: none;
+                    pointer-events: none;
+                    display: flex;
+                    transition: 1s ease-out;
+
+                    
+                }
+
+                .teacherbox{
+                    /* border: 1px solid #161c21; */
+                    width: 140px;
+                    margin-inline: 26px;
+                    padding-top: 5px;
+                    img{
+                        height: 140px;
+                        width: 140px;
+                        object-fit: cover;
+                        object-position: top;
+                        border-radius: 50%;
+                    }
+                    h5{
+                        font-size: 20px;
+                        margin-top: 25px;
+                        font-weight: 900;
+                        letter-spacing: 2px;
+                        width: 140px;
+                        text-align: center;
+                        color: #353e49;
+                    }
+                }
+            }
+                
+            }
+
+
+            .CourseList{
+                /* border: 3px solid lightblue; */
+                width: 100%;
+                height: 360px;
+                padding-top: 60px;
+
+                @media screen and (max-width: 1200px){
+                    height: 330px;
+                }
+
+               
+
+                .CourseListPic{
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                    object-position: top;
+                    border-radius: 5px;
+
+                    @media screen and (max-width: 1200px){
+                        height: 160px;
+                    }
+                }
+
+                .CourseListText{
+                    margin-top: 10px;
+                    font-size: 14px;
+                    color: #3c3c3c;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    text-align: justify;
+                    line-height: 24px;
+
+                    .Courseon{
+                        background-color: var(--blue);
+                        font-size: 12px;
+                        display: inline-block;
+                        padding: 1px 8px;
+                        border-radius: 5px;
+                        letter-spacing: 2px;
+                        color: var(--blue_dark);
+                    }
+                    .Courseoff{
+                        background-color: var(--green);
+                        font-size: 12px;
+                        display: inline-block;
+                        padding: 1px 8px;
+                        border-radius: 5px;
+                        letter-spacing: 2px;
+                        color: var(--green_dark);
+                    }
+                }
+
+                .CourseListTeacher{
+                    font-size: 12px;
+                    color: var(--text_gray);
+                }
+
+                .CourseListPrice{
+                    font-size: 16px;
+                    font-weight: 900;
+                    color: var(--orange);
+                }
+
+            }
+
+            .article_circlebtn{
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+            }
+
+            
+        }
+
+
+        /* rwd */
+
+        #homeArea01_rwd{
+            /* border: 3px solid darkblue; */
+
+            .homeArea01_rwd_type{
+                color: var(--purple_light);
+                font-weight: 600;
+                font-size: 18px;
+                letter-spacing: 2px;
+                text-align: center;
+
+                .homeArea01_rwd_title{
+                    padding-top: 40px;
+                    padding-bottom: 35px;
+                }
+
+                .rwd_type_p{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    padding-inline: 20px;
+
+                }
+
+                .rwd_type_pic{
+
+                    height: 125px;
+                    width: 48%;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    padding: 0;
+                    margin: 0 0 12px 0;
+                    position: relative;
+
+                    @media screen and (min-width: 768px) and (max-width: 992px){
+                        width: 49%;
+                        height: 150px;
+                    }
+
+                    h6{
+                        position: absolute;
+                        line-height: 130px;
+                        color: white;
+                        letter-spacing: 5px;
+                        width: 100%;
+                        font-size: 18px;
+                        text-align: center;
+                        margin: 0;
+                        text-shadow: 1px 1px 3px var(--text_primary);
+                        font-weight: 200;
+                    }
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+
+
+                }
+
+                .rwd_type_pic.pink{
+                    background: linear-gradient(180deg, #FFB7D1 0%, #FF8080 100%);
+                }
+                
+            }
+
+        
+
+            .wine_adtitle{
+                width: calc(100% - 40px);
+                margin-left: 20px;
+                height: 80px;
+                margin-top: 30px;
+                background: url(./img/closon-clerget-2.png) no-repeat top/contain, black;
+            }
+
+            .wine_ad{
+                width: calc(100% - 40px);
+                display: flex;
+                margin-left: 20px;
+                height: 250px;
+                background: url(./img/Wine-Heart-Health.jpg) no-repeat top/cover;
+
+                
+            }
+
+            .adtext{
+                align-self: flex-end;
+                width: 100%;
+                text-shadow: 1px 0px 3px var(--text_primary);
+                left: 0px;
+                color: white;
+                text-align: justify;
+                padding: 0 35px 15px 35px;
+                position: relative;
+                background-image: linear-gradient( transparent 0%, #851931 100%);
+
+                h2{
+                    font-size: 16px;
+
+
+                }
+                p{
+                    font-size: 12px;
+                }
+            }
+
+            .wine_ad_link{
+
+                width: 100%;
+                /* border: 2px solid lightcoral; */
+
+                .link_box{
+                    margin-top: 25px;
+                    width: 100%;
+                    height: 200px;
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    @media screen and (max-width: 576px){
+                        height: 130px;
+                    }
+
+
+                    img{
+                        margin-left: 30px;
+                        margin-right: 30px;
+                        @media screen and (max-width: 768px){
+                            width: 100px;
+                            margin-left: 30px;
+                            margin-right: 30px;
+                            object-fit: cover;
+                        }
+                    }
+                    
+                }
+                .link_box_text{
+                  
+                    flex-grow: 2;
+                    color: var(--primary);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    
+                    
+                    h4{
+                        align-self: flex-start;
+                        letter-spacing: 2px;
+                        text-align: left;
+                        font-size: 18px;
+                        font-weight: 600;
+                        padding-top: 15px;
+                        padding-right: 20px;
+                        line-height: 28px;
+                        @media screen and (max-width: 768px){
+                            font-size: 14px;
+                            line-height: 20px;
+                        }
+            
+                    }
+
+                }
+                .link_box_text_price{
+                    background-color: var(--primary);
+                    color: white;
+                    display: flex;
+                    padding: 25px 30px;
+                    justify-content: space-between;
+                    margin-right: 20px;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+
+                    @media screen and (max-width: 768px){
+                        padding: 15px 20px;
+                    }
+
+                    
+
+                    p{
+                        margin: 0;
+                        font-size: 16px;
+                        font-weight: 100;
+                        @media screen and (max-width: 768px){
+                            font-size: 12px;
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+        #homeArea02_rwd{
+            /* border: 3px solid lightblue; */
+            
+
+            .homeArea02_rwd_title{
+                color: var(--purple_light);
+                font-weight: 600;
+                font-size: 18px;
+                letter-spacing: 2px;
+                text-align: center;
+                padding-block: 40px; 
+
+            }
+
+            .newsbox{
+                position: relative;
+
+                .actimg{
+                    width: 100%;
+                    height: 230px;
+                    padding-inline: 20px;
+        
+                    
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .acttitle{
+                    position: absolute;
+                    left: 0px;
+                    top: 115px;
+                    width: 100%;
+                    text-align: center;
+                    color: white;
+                    letter-spacing: 2px;
+                    text-shadow: 1px 1px 3px var(--text_primary);
+
+                }
+
+                .newsText{
+
+      
+                    height: 140px;
+                    /* border: 2px solid lightblue; */
+                    margin: 20px 20px 0 20px;
+                    padding: 15px 12px 18px 12px;
+                    background: url(./img/Rectangle_rwd.png) repeat-x;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    @media screen and (min-width: 576px) and (max-width: 992px){
+                        padding: 20px;
+                    }
+
+                    p{
+                        font-size: 14px;
+                        color: var(--text_primary);
+                        text-align: justify;
+                        line-height: 22px;
+                        letter-spacing: 1px;
+                        margin: 0;
+
+                        /* 多行省略 */
+                        width: 100%;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        line-clamp: 2;
+                        -webkit-line-clamp: 3;
+                        overflow: hidden;
+
+
+                        @media screen and (min-width: 576px) and (max-width: 992px){
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+                    }
+
+                    .newsText_date{
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 5px;
+
+
+                        h5{
+                            font-size: 14px;
+                            font-weight: 900;
+                            margin-bottom: 0;
+                            color: rgb(255, 97, 124);
+                            font-weight: 900;
+                            letter-spacing: 1px;
+                        }
+                        img{
+                            width: 7px;
+                            object-fit: contain;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+
+            
+        }
+
+        #homeArea03_rwd{
+
+            .homeArea03_rwd_title{
+                color: var(--purple_light);
+                font-weight: 600;
+                font-size: 18px;
+                letter-spacing: 2px;
+                text-align: center;
+                padding-block: 40px; 
+
+            }
+
+            .article_out{
+
+                width: 100%;
+
+
+                
+                padding-inline: 20px;
+
+                .article_box{
+                    width: 100%;
+                    height: 160px;
+                    margin-bottom: 12px;
+                    position: relative;
+                    border-radius: 5px;
+                    overflow: hidden;
+
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+
+                    }
+
+                    h5{
+                        position: absolute;
+                        bottom: 20px;
+                        color: white;
+                        font-size: 16px;
+                        font-weight: 900;
+                        width: 100%;
+                        padding-left: 25px;
+                        padding-right: 25px;
+                        letter-spacing: 1px;
+                        text-shadow: 1px 1px 1px var(--text_primary);
+                    }
+
+                }
+            }
+
+            
+        }
+
+        #homeArea04_rwd{
+            
+            margin-bottom: 50px;
+
+            .homeArea04_rwd_title{
+                color: var(--purple_light);
+                font-weight: 600;
+                font-size: 18px;
+                letter-spacing: 2px;
+                text-align: center;
+                padding-block: 40px; 
+            }
+
+            .teacher_area_rwd.active .teacher_area_rwd_inner {
+                transform: translateX(-495px); 
+            }
+
+            .teacher_area_rwd{
+                /* border: 2px solid lightblue; */
+                height: 200px;
+                overflow: hidden;
+                position: relative;
+
+
+                .teacher_area_rwd_inner{
+                    position: absolute;
+                    height: 100%;
+                    /* background-color: #9ad1ff; */
+                    width: 300%;
+                    padding-left: 20px;
+                    user-select: none;
+                    pointer-events: none;
+                    display: flex;
+                    transition: 1s ease-out;
+
+                    
+                }
+
+                .teacherbox{
+                    /* border: 1px solid #161c21; */
+                    width: 120px;
+                    margin-right: 30px;
+                    img{
+                        height: 120px;
+                        width: 120px;
+                        object-fit: cover;
+                        object-position: top;
+                        border-radius: 50%;
+                    }
+                    h5{
+                        font-size: 18px;
+                        margin-top: 25px;
+                        font-weight: 900;
+                        letter-spacing: 2px;
+                        width: 120px;
+                        text-align: center;
+                        color: var(--text_primary);
+                    }
+                }
+            }
+
+            .course_area_rwd{
+                width: 100%;
+                margin-top: 30px;
+
+                .coursebox_rwd{
+                    padding-inline: 20px;
+                    height: 120px;
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: 15px;
+
+                    img{
+                        width: 170px;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 5px;
+                    }
+
+                    .coursebox_rwd_text{
+                        margin-left: 10px;
+                        /* border: 1px solid lightblue; */
+                        flex-grow: 1;
+
+                        h5{
+                            font-size: 12px;
+
+                            text-align: justify;
+                            color: var(--text_primary);
+                            line-height: 20px;
+                            font-weight: 900;
+
+                            @media screen and (min-width: 576px) and (max-width: 992px){
+                                font-size: 16px;
+                        
+                            }
+                        }
+
+                        .coursebox_rwd_type{
+                            display: flex;
+                            align-items: center;
+
+
+                            div{
+                                background-color: var(--blue);
+                                color: var(--blue_dark);
+                                font-weight: 600;
+                                width: 42px;
+                                height: 25px;
+                                border-radius: 7px;
+                                text-align: center;
+                                font-size: 12px;
+                                line-height: 14px;
+                                letter-spacing: 2px;
+                                padding: 5px;
+
+                            }
+
+                            p{
+                                font-size: 12px;
+                                color: var(--text_primary);
+                                letter-spacing: 1px;
+                                margin-bottom: 0;
+                                margin-left: 10px;
+                                
+                            }
+                        }
+
+                        .coursebox_rwd_text_price{
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-end;
+                            margin-top: 5px;
+                            margin-right: 2px;
+                            margin-bottom: 5px;
+                            letter-spacing: 1px;
+
+                            h4{
+                                color: var(--orange);
+                                font-size: 16px;
+                                font-weight: 900;
+                                margin-bottom: 2px;
+                                @media screen and (min-width: 576px) and (max-width: 992px){
+                                    font-size: 20px;
+                                }
+                            }
+
+                            del{
+                                color: #bebebe;
+                                font-size: 12px;
+                                @media screen and (min-width: 576px) and (max-width: 992px){
+                                    font-size: 14px;
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+       
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <div class="container d-none d-lg-flex">
+            <a href="index.html"><img class="nav_logo" src="img/nav_logo.png" alt="" width="170"></a>
+            <ul id="nav_ul">
+                <a href="" id="shop_li">
+                    <li>商品列表+</li>
+                </a>
+                <a href="">
+                    <li>相關文章</li>
+                </a>
+                <a href="">
+                    <li>品酒課程</li>
+                </a>
+                <a href="">
+                    <li>活動專區</li>
+                </a>
+            </ul>
+            <div class="nav_r">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass search_icon"></i>
+                    <input id="nav_search" type="search" placeholder="搜 尋">
+                </div>
+
+                <div class="cart">
+                    <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                    <div class="dot">35</div>
+                </div>
+
+                <div class="nav_user">
+                    <img src="img/user_pic.png" alt="">
+                    
+                </div>
+                <div class="user_area">
+                    <div class="user_area_t">
+                        <div class="user_area_tl">
+                            <img src="img/user_pic.png" alt="">
+                        </div>
+                        <div class="user_area_tr">
+                            <p>椎名林檎</p>
+                            <p>Ann_970412</p>
+                        </div>
+                    </div>
+                 
+                    <div class="line"></div>
+                    <ul>
+                        <a href=""><li>個人資料</li></a>
+                        <a href=""><li>訂單查詢</li></a>
+                        <a href=""><li>優惠券&WP</li></a>
+                        <a href=""><li>收藏庫</li></a>
+                    </ul>
+                    <div class="user_area_btn">
+                        <button disabled>註冊</button>
+                        <button>登出</button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+
+
+        <div class="nav_rwd d-flex d-lg-none">
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        
+            <img class="nav_rwd_logo" src="img/nav_logo_rwd.png" alt="" width="100">
+            <div class="cart cart_rwd">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div class="dot">35</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="navShop">
+        <div class="container">
+            <div class="row h-100 nav_row align-items-center">
+                <div class="col-4 ">
+                    <div class="navShopBox">
+                        <div class="img img1"></div>
+                        
+                        <div class="navShopBox_b d-flex align-items-center">
+                            <img class="navarr" src="img/navarr.png" alt="" width="45">
+                            <canvas class="progressCircle" width="100" height="100"></canvas>
+                            <input type="range" class="progressSlider" min="0" max="100" value="0">
+                            <div class="navShopBox_b_text">
+                                <small>RED WINE</small>
+                                <div class="fs-5">紅酒</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="navShopBox">
+                        <div class="img img2"></div>
+                        <div class="navShopBox_b d-flex align-items-center">
+                            <img src="img/navarr.png" alt="" width="45">
+                            <canvas class="progressCircle" width="100" height="100"></canvas>
+                            <input type="range" class="progressSlider" min="0" max="100" value="0">
+                           
+                            <div class="navShopBox_b_text">
+                                <small>WHITE WINE</small>
+                                <div class="fs-5">白酒</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="navShopBox">
+                        <div class="img img3"></div>
+                        <div class="navShopBox_b d-flex align-items-center">
+                            <img src="img/navarr.png" alt="" width="45">
+                            <canvas class="progressCircle" width="100" height="100"></canvas>
+                            <input type="range" class="progressSlider" min="0" max="100" value="0">
+                            
+                            <div class="navShopBox_b_text">
+                                <small>WINE-OPENER</small>
+                                <div class="fs-5">開瓶器具</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="navShop_list">
+
+    </div>
+
+    <div class="nav_rwdArea">
+        <div class="nav_rwdArea_head">
+            <div class="nav_rwdArea_head_t">
+                <div class="nrht_l d-flex align-items-center">
+                    <img src="img/user_pic_md.png" alt="" width="60">
+                    <div class="nrht_l_text ms-3">
+                        <div>Ann_970412</div>
+                        <div>椎名林檎</div>
+                    </div>
+                </div>
+                <div class="nrht_r">
+                    白金會員
+                </div>
+            </div>
+            <div class="nav_rwdArea_head_b">
+                <div class="nrhb_l">
+                    <i class="fa-solid fa-circle-dollar-to-slot me-1"></i> <span class="me-3">578P</span>
+                    <i class="fa-solid fa-ticket-simple me-1"></i> <span>x4</span>
+                </div>
+                <div class="nrhb_r"><a href="">會員頁面<i class="fa-solid fa-chevron-right"></i></a></div>
+            </div>
+        </div>
+
+        <div class="nav_rwdArea_bottom">
+            <ul>
+                <a href=""><li><i class="fa-solid fa-house ihome"></i>首頁</li></a>
+                <a href=""><li><i class="fa-solid fa-bag-shopping me-2"></i>商品列表</li></a>
+                <a href=""><li><i class="fa-solid fa-book me-2"></i>相關文章</li></a>
+                <a href=""><li><i class="fa-solid fa-chalkboard-user icourse"></i><span>品酒課程</span></li></a>
+                <a href=""><li><i class="fa-solid fa-square-rss me-2"></i>活動專區</li></a>
+                
+            </ul>
+
+            
+        </div>
+
+    </div>
+
+    
+
+    <div class="homebar d-none d-lg-block">
+        <div class="homebar_bg"></div>
+        <div class="homebar_lf"></div>
+        <div class="homebar_wine"></div>
+        <div class="homebar_wine_text">
+            <h2>賈其皮耶酒莊 梧玖頂級紅酒 2020</h2>
+            <p>布根地的馬賽克地形，導致每塊葡萄園都有著千變萬化的土壤性質；隨著山坡的起伏形成許多微氣候區，使得即便位於同一塊葡萄園中，也有些微的差異性；而鑒於每位釀酒人的風格不一，令此區釀出的酒款變化多端、類型多元。布根地葡萄酒也因此被公認為全世界最難懂的葡萄酒。</p>
+        </div>
+        <div class="bird"></div>
+        <a href="#homeArea01">
+        <div class="homebar_scroll">
+            <div class="scroll_line"></div>
+            <div class="scroll_head_b">
+                <div class="scroll_head"></div>
+            </div>
+            
+        </div>
+        </a>
+        <!-- <div class="homebar_slogan">仙園裡，醉美的迷茫。</div> -->
+    </div>
+
+    <div class="homebar_rwd d-block d-lg-none">
+        <div class="homebar_bg_rwd"></div>
+        <div class="homebar_lf_rwd"></div>
+        <div class="bird_rwd"></div>
+
+        <div class="homeuserview_rwd">
+            <h2>仙園裡，<br />醉美的迷茫。</h2>
+            <div class="home_search_rwd">
+                <input type="search" name="" id="home_search_rwd" placeholder="搜尋您想要的美酒">
+                <i class="fa-solid fa-magnifying-glass search_icon_rwd"></i>
+            </div>
+        </div>
+        
+        <a class="homebar_rwd_link" href="#homeArea01_rwd">
+            <p>- 點擊往下尋寶 -</p>
+        </a>
+        
+    </div>
+
+    
+    <!-- desk -->
+    <div class="container homeArea01 d-none d-lg-block" id="homeArea01">
+        <div>
+            <div class="homeArea01_l">
+            </div>
+            <div class="homeArea01_r">
+                <div class="homeArea01_r_t">
+                    <div class="homeArea01_r_t_box"></div>
+                    <p>賈其皮耶酒莊 梧玖頂級紅酒 2020</p>
+                </div>
+                <div class="homeArea01_r_m">
+                色澤：漂亮且深邃的紅寶石色澤。<br />
+
+                香氣：非常精確且非常複雜，帶有煙草、甘草和烘烤的香氣，隨著醒酒時間拉長，展現成熟、新鮮的黑莓、藍莓、黑加侖的香氣。<br />
+
+                風味：成熟清新的果味和清爽的酸度達到完美平衡，頂尖的結構表現。尾韻非常精緻，單寧細膩點綴辛香料口感。
+                </div>
+                <div class="homeArea01_r_b">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    商品頁面
+                </div>
+            </div>
+        </div>
+        <div class="row news">
+            <div class="col-3 pt-5">
+                <img class="d-block" src="./img/Frame 49.png" alt="">
+            </div>
+            <div class="col-9 pt-5 px-5">
+                <div class="news_b">
+                    <div class="news_b_l">
+                        <img src="img/what-is-a-dry-white.webp" alt="">
+                    </div>
+                    <div class="news_b_r">
+                        <p class="fs5">最新活動 - 酒友一支會</p>
+                        <p class="fs">
+                            什麼是一支會？
+                            就像英文的potluck，一人帶一道菜去聚會，一支會就是一人帶一支酒來聚會。
+                            VINDEX中山主辦的一支會，有泰德利代理品牌全品項品飲，也有以產區、品種的盲飲一支會
+                            更歡迎各路好友包場，自行帶一支酒來大亂鬥大。享。受。
+                        </p>
+                        <div class="news_btn">
+                            <p>2024.09.08</p> 
+                            <img src="./img/Frame 8.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="d-none d-lg-block homeArea02_bg"></div>
+
+    <div class="container d-none d-lg-block" id="homeArea02">
+
+        <img src="./img/Frame 56.png" alt="" class="homeArea02_title">
+
+        <div class="row homeArea02_type">
+            <div class="col-4">
+                <a href="">
+                    <div class="homeArea02_type_text">
+                        <p>紅酒 (Red Wine)</p>
+                    </div>
+                    <img src="./img/nav_wine.png" alt="" >
+                </a>
+            </div>
+
+            <div class="col-4">
+                <a href="">
+                    <div class="homeArea02_type_text">
+                        <p>白酒 (White Wine)</p>
+                    </div>
+                    <img src="./img/nav_white.png" alt="">
+                </a>
+            </div>
+
+            <div class="col-4">
+                <a href="">
+                    <div class="homeArea02_type_text">
+                        <p>開瓶器 (Wine-Opener)</p>
+                    </div>
+                    <img src="./img/nav_tool.png" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="homeArea02_product">
+            <div class="homeArea02_product_list">
+                <div class="product_item">
+                    <div class="product_item_pic">
+                        <img src="./img/WI00008903_btl.jpg" alt="">
+                        <div class="product_item_price">
+                            <p>750ml | 西班牙</p>
+                            <p>＄3,070</p>
+                        </div>
+                    </div>
+                    <div class="product_item_name">
+                        洛禾酒莊．「吹笛人」紅酒 
+                    </div>
+                </div>
+
+                <div class="product_item">
+                    <div class="product_item_pic">
+                        <img src="./img/WI00098201_btl.jpg" alt="">
+                        <div class="product_item_price">
+                            <p>750ml | 法國</p>
+                            <p>＄1,590</p>
+                        </div>
+                    </div>
+                    <div class="product_item_name">
+                        皮耶．烏塞力歐父子酒莊 ．教皇新堡紅酒
+                    </div>
+                </div>
+
+                <div class="product_item">
+                    <div class="product_item_pic">
+                        <img src="./img/WI00107408_btl.jpg" alt="">
+                        <div class="product_item_price">
+                            <p>750ml | 義大利</p>
+                            <p>＄7,540</p>
+                        </div>
+                    </div>
+                    <div class="product_item_name">
+                        布魯諾．洛卡酒莊．「庫拉園」巴巴瑞斯科陳年紅酒
+                    </div>
+                </div>
+
+            </div>
+            <div class="all_product">
+                <img src="./img/Frame 60.png" alt="">
+
+                <a href="">
+                    <div class="all_circlebtn">
+                        <div class="btn_arrow_line"></div>
+                        <div class="btn_arrow_head"></div>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="container d-none d-lg-block" id="homeArea03">
+        <img src="./img/Frame 57.png" alt="" class="homeArea03_title">
+        <div class="row homeArea03_outer">
+            <div class="col-12 my-4">
+                <div class="homeArea03_article_title">
+                    一分鐘認識橡木桶：增添葡萄酒香氣的幕後功臣
+                </div>
+                <a href="">
+                    <div class="homeArea03_article_lg">
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="col-5">
+                <div class="homeArea03_article_title">
+                    學習形容葡萄酒的風味
+                </div>
+                <a href="">
+                    <div class="homeArea03_article_sm sm1">
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="col-5">
+                <div class="homeArea03_article_title">
+                    喝不完的葡萄酒該怎麼保存？
+                </div>
+                <a href="">
+                    <div class="homeArea03_article_sm sm2">
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="col-2 article_circlebtn">
+                <a href="">
+                    <div class="all_circlebtn_red">
+                        <div class="btn_arrow_line_red"></div>
+                        <div class="btn_arrow_head_red"></div>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div class="container d-none d-lg-block" id="homeArea04">
+
+        <div class="nextarr"><i class="fa-solid fa-chevron-right"></i></div>
+        <img src="./img/Frame 58.png" alt="" class="homeArea04_title">
+
+        <div class="mt-4">
+
+            <img class="tech" src="./img/Frame 59.png" alt="">
+
+            <div class="teacher_outer">
+                <div class="teacher_area">
+                    <div class="teacher_area_inner">
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_01.jpg" alt="">
+                                <h5>蔡孝倫</h5>
+                            </a>
+                        </div>
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_19.jpg" alt="">
+                                <h5>屈享平</h5>
+                            </a>
+                        </div>
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_21.jpg" alt="">
+                                <h5>王依亭</h5>
+                            </a>
+                        </div>
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_04.jpg" alt="">
+                                <h5>Mark Pygott MW</h5>
+                            </a>
+                        </div>
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_20.webp" alt="">
+                                <h5>王琪</h5>
+                            </a>
+                        </div>
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_22.jpg" alt="">
+                                <h5>蕭豐盛</h5>
+                            </a>
+                        </div>
+
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/id_22.jpg" alt="">
+                                <h5>蕭豐盛</h5>
+                            </a>
+                        </div>
+
+        
+                        <div class="teacherbox">
+                            <a href="">
+                                <img src="./img/default_user.jpg" alt="">
+                                <h5>查看更多</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-10">
+                <div class="row CourseList">
+                    <div class="col-4 d-flex flex-column">
+                        <img src="./img/course1.png" alt="" class="CourseListPic"></img>
+                        <div class="CourseListText">
+                            <div class="Courseon">
+                                線上
+                            </div>
+                            迷人的葡萄酒探索之旅-5小時從挑選到品飲一次了解
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <div class="CourseListTeacher">
+                                by 蔡孝倫
+                            </div>
+                            <div class="CourseListPrice">
+                                NT$ 3,500
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 d-flex flex-column">
+                        <img src="./img/course1.png" alt="" class="CourseListPic"></img>
+                        <div class="CourseListText">
+                            <div class="Courseon">
+                                線上
+                            </div>
+                            迷人的葡萄酒探索之旅-5小時從挑選到品飲一次了解
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <div class="CourseListTeacher">
+                                by 蔡孝倫
+                            </div>
+                            <div class="CourseListPrice">
+                                NT$ 3,500
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4 d-flex flex-column">
+                        <img src="./img/1581994036190.jpg" alt="" class="CourseListPic"></img>
+                        <div class="CourseListText">
+                            <div class="Courseoff">
+                                線下
+                            </div>
+                            SFM南法產區大師級認證課程
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <div class="CourseListTeacher">
+                                by 林澧竣
+                            </div>
+                            <div class="CourseListPrice">
+                                NT$ 18,500
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-2 article_circlebtn">
+                <a href="">
+                    <div class="all_circlebtn_blue">
+                        <div class="btn_arrow_line_blue"></div>
+                        <div class="btn_arrow_head_blue"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+
+        
+        
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- rwd -->
+    <div class="d-block d-lg-none" id="homeArea01_rwd">
+            
+
+            <div class="homeArea01_rwd_type">
+                <div class="homeArea01_rwd_title">選您所要的商品類型</div>
+
+                <div class="rwd_type_p">
+                    <div class="rwd_type_pic me-1">
+                        <h6 class="d-none d-md-block d-lg-none mt-3">紅酒 (Red Wine)</h6>
+                        <h6 class="d-block d-md-none">紅酒</h6>
+                        <a href=""><img src="./img/nav_wine.png" alt=""></a>
+                    </div>
+                    <div class="rwd_type_pic ms-1">
+                        <h6 class="d-none d-md-block d-lg-none mt-3">白酒 (White Wine)</h6>
+                        <h6 class="d-block d-md-none">白酒</h6>
+                        <a href=""><img src="./img/nav_white.png" alt=""></a>
+                    </div>
+                    <div class="rwd_type_pic me-1">
+                        <h6 class="d-none d-md-block d-lg-none mt-3">開瓶器 (Wine-Opener)</h6>
+                        <h6 class="d-block d-md-none">開瓶器</h6>
+                        <a href=""><img src="./img/nav_tool.png" alt=""></a>
+                    </div>
+                    <div class="rwd_type_pic ms-1 pink">
+                        <h6 class="d-none d-md-block d-lg-none mt-3">查看更多 (see more)</h6>
+                        <h6 class="d-block d-md-none">查看更多..</h6>
+                    </div>
+                </div>
+                
+                <div class="wine_adtitle"></div>
+                <div class="wine_ad">
+                    <div class="adtext">
+                        <h2>賈其皮耶酒莊 梧玖頂級紅酒 2020</h2>
+                        <p>色澤：漂亮且深邃的紅寶石色澤。<br />
+                        香氣：非常精確且非常複雜，帶有煙草、甘草和烘烤的香氣。</p>
+                    </div>
+                </div>
+
+                <div class="wine_ad_link">
+                    <div class="link_box">
+                        <img src="./img/Domaine Jacques.jpg" alt="" width="180">
+                        <div class="link_box_text">
+                            <h4>賈其皮耶酒莊 梧玖頂級紅酒 2020</h4>
+                            <div class="link_box_text_price">
+                                <p>750ml | 法國</p>
+                                <p>$7,350</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="link_box">
+                        <img src="./img/Domaine Jacques.jpg" alt="" width="180">
+                        <div class="link_box_text">
+                            <h4>賈其皮耶酒莊 梧玖頂級紅酒 2022</h4>
+                            <div class="link_box_text_price">
+                                <p>750ml | 法國</p>
+                                <p>$6,850</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+    </div>
+
+    <div class="d-block d-lg-none" id="homeArea02_rwd">
+
+        <div class="homeArea02_rwd_title">最新消息</div>
+        <div class="newsbox">
+            <div class="acttitle">最新活動 - 酒友一支會</div>
+
+            <div class="actimg">
+                <img src="./img/what-is-a-dry-white.webp" alt="">
+            </div>
+            
+            <div class="newsText">
+                <p>什麼是一支會？
+                    就像英文的potluck，一人帶一道菜去聚會，一支會就是一人帶一支酒來聚會。
+                    VINDEX中山主辦的一支會，有泰德利代理品牌全品項品飲，也有以產區、品種的盲飲一支會
+                    更歡迎各路好友包場，自行帶一支酒來大亂鬥大。享。受。</p>
+                <div class="newsText_date">
+                    <h5>2024.09.08</h5>
+                    <img src="./img/Frame 8.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-block d-lg-none" id="homeArea03_rwd">
+        <div class="homeArea03_rwd_title">相關文章</div>
+
+        <div class="article_out">
+            <a href="">
+                <div class="article_box">
+                    <img src="./img/Rectangle 39b.jpg" alt="">
+                    <h5>一分鐘認識橡木桶：增添葡萄酒香氣的幕後功臣</h5>
+                </div>
+            </a>
+            <a href="">
+                <div class="article_box">
+                    <img src="./img/Rectangle 64.png" alt="">
+                    <h5>學習形容葡萄酒的風味</h5>
+                </div>
+            </a>
+            <a href="">
+                <div class="article_box">
+                    <img src="./img/Rectangle 65.png" alt="">
+                    <h5>喝不完的葡萄酒該怎麼保存？</h5>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="d-block d-lg-none" id="homeArea04_rwd">
+        <div class="homeArea04_rwd_title">品酒課程</div>
+
+        <div class="teacher_area_rwd">
+            <div class="teacher_area_rwd_inner">
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/id_01.jpg" alt="">
+                        <h5>蔡孝倫</h5>
+                    </a>
+                </div>
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/id_19.jpg" alt="">
+                        <h5>屈享平</h5>
+                    </a>
+                </div>
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/id_21.jpg" alt="">
+                        <h5>王依亭</h5>
+                    </a>
+                </div>
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/id_04.jpg" alt="">
+                        <h5>Mark Pygott MW</h5>
+                    </a>
+                </div>
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/id_20.webp" alt="">
+                        <h5>王琪</h5>
+                    </a>
+                </div>
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/id_22.jpg" alt="">
+                        <h5>蕭豐盛</h5>
+                    </a>
+                </div>
+
+                <div class="teacherbox">
+                    <a href="">
+                        <img src="./img/default_user.png" alt="">
+                        <h5>查看更多</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="course_area_rwd">
+
+            <a href="">
+                <div class="coursebox_rwd">
+                    <img src="./img/course1.png" alt="">
+                    <div class="coursebox_rwd_text">
+                        <h5>迷人的葡萄酒探索之旅-5小時從挑選到品飲一次了解</h5>
+                        <div class="coursebox_rwd_type">
+                            <div>線上</div>
+                            <p>by 蔡孝倫</p>
+                        </div>
+                        <div class="coursebox_rwd_text_price">
+                            <h4>NT$ 3,500</h4>
+                            <del>NT$ 5,500</del>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="coursebox_rwd">
+                    <img src="./img/course1.png" alt="">
+                    <div class="coursebox_rwd_text">
+                        <h5>迷人的葡萄酒探索之旅-5小時從挑選到品飲一次了解</h5>
+                        <div class="coursebox_rwd_type">
+                            <div>線上</div>
+                            <p>by 蔡孝倫</p>
+                        </div>
+                        <div class="coursebox_rwd_text_price">
+                            <h4>NT$ 3,500</h4>
+                            <del>NT$ 5,500</del>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="coursebox_rwd">
+                    <img src="./img/course1.png" alt="">
+                    <div class="coursebox_rwd_text">
+                        <h5>迷人的葡萄酒探索之旅-5小時從挑選到品飲一次了解</h5>
+                        <div class="coursebox_rwd_type">
+                            <div>線上</div>
+                            <p>by 蔡孝倫</p>
+                        </div>
+                        <div class="coursebox_rwd_text_price">
+                            <h4>NT$ 3,500</h4>
+                            <del>NT$ 5,500</del>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./nav.js"></script>
+    <script>
+
+        
+        const homebar = document.querySelector(".homebar");
+        const homebar_bg = document.querySelector(".homebar_bg");
+        const homebar_lf = document.querySelector(".homebar_lf");
+        const homebar_wine = document.querySelector(".homebar_wine");
+        const homebar_wine_text = document.querySelector(".homebar_wine_text");
+        const bird = document.querySelector(".bird");
+        const homebar_rwd = document.querySelector(".homebar_rwd");
+        const homebar_bg_rwd = document.querySelector(".homebar_bg_rwd");
+        const homebar_lf_rwd = document.querySelector(".homebar_lf_rwd");
+
+        (function(){
+            setTimeout(()=>{
+                homebar_lf.style.top = `-10px`;
+                homebar_bg.style.top = `0px`;
+                homebar_bg.style.left = `-300px`;
+                homebar_bg.style.transform = "scale(1)";
+                homebar_bg.style.filter = `blur(0px)`;
+            },500)
+            
+        })();
+
+        homebar.addEventListener("click", () => {
+            homebar_bg.classList.toggle("active");
+            homebar_lf.classList.toggle("active");
+        })
+
+        homebar_rwd.addEventListener("click", () => {
+            homebar_bg_rwd.classList.toggle("active");
+            homebar_lf_rwd.classList.toggle("active");
+        })
+
+ 
+
+        setTimeout(()=>{
+
+
+            document.addEventListener('mousemove', e => {
+           
+            
+            const mouseX = parseInt((e.clientX / window.innerWidth)*100);
+
+
+            console.log(mouseX);
+
+     
+            if(mouseX<10){
+                let mu = 100 - mouseX;
+                homebar_bg.style.left = `${(mu*2)-250}px`;
+                homebar_lf.style.left = `${(mu*4)-400}px`;
+                homebar_wine.classList.add("display");
+                homebar_wine_text.classList.add("display");
+            }
+            
+            else{
+                homebar_bg.style.left = `${(-mouseX)-300}px`;
+                homebar_lf.style.left = `${(-mouseX*2)-300}px`;
+                homebar_wine.classList.remove("display");
+                homebar_wine_text.classList.remove("display");
+
+            }
+            
+
+            
+            
+            if(mouseX <=20){
+                homebar_bg.style.filter = `blur(2px)`;
+            }
+            else if(mouseX >=90){
+                homebar_bg.style.filter = `blur(3px)`;
+            }
+            else{
+                homebar_bg.style.filter = `blur(0px)`;
+            }
+            
+  
+        });
+        }, 1500)
+
+
+
+
+        const touch_list = document.querySelector(".teacher_area_rwd");
+        const teacher_area_rwd_inner = document.querySelector(".teacher_area_rwd_inner");
+
+
+
+        let startX, moveX;
+
+        touch_list.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        touch_list.addEventListener('touchmove', (e) => {
+            moveX = e.touches[0].clientX;
+            const diff = startX - moveX;
+            
+            handleSlide(startX - moveX);
+        });
+
+
+        let isMouseDown = false;
+
+        touch_list.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            startX = e.clientX;
+        });
+
+        touch_list.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+            moveX = e.clientX;
+            handleSlide(startX - moveX);
+        });
+
+        touch_list.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+
+        touch_list.addEventListener('mouseleave', () => {
+            isMouseDown = false;
+        });
+
+
+
+
+
+        function handleSlide(diff) {
+            if (diff > 50) {
+                touch_list.classList.add('active');
+            } else if (diff < -50) {
+                touch_list.classList.remove('active');
+            }
+        }
+
+
+
+
+        const nextarr = document.querySelector(".nextarr");
+        const tech = document.querySelector(".tech");
+        const teacher_area = document.querySelector(".teacher_area");
+        const teacher_area_inner = document.querySelector(".teacher_area_inner");
+
+        
+        nextarr.addEventListener("click", () => {
+            teacher_area.classList.add("active");
+        })
+
+        tech.addEventListener("click", () => {
+            teacher_area.classList.remove("active");
+        })
+
+
+    </script>
+</body>
+</html>
